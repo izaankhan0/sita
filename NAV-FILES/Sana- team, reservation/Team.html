@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: Poppins;
+    margin: 0;
+    background-color: #010101;
+    color: #eee;
+   
+}
+/* Header Styling */
+header {
+    width: 100%;
+    margin: auto;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #33333330;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #eee;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+header .logo:hover {
+    color: #f5a623; /* Highlight color */
+}
+
+header .menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+header .menu li a {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+header .menu li a:hover {
+    background-color: #f5a623;
+    color: #333;
+}
+
+header .van {
+    display: none;
+    position: fixed;
+    height:100vh;
+    width:50vw;
+    background-color: #ffa300;
+    left:-1000px;
+    z-index:20;
+    transition: 0.5s ease;
+    margin-top: 32px;
+}
+header .van ul{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top: 40px;
+    list-style: none;
+}
+header .van ul li{
+    margin: 15px 0px;
+}
+header .van ul li a{
+    color: black;
+    margin-top: 40px;
+    text-decoration: none;
+    list-style: none;
+    font-size: 1em;
+    font-weight: 600;
+    transition:100ms ease;
+}
+
+header .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    top:13px;
+
+}
+header .burger .line {
+    background-color: #ffa300;
+    display: block;
+    border-radius: 10px;
+    width: 100%;
+    height: 6px;
+}
+.line{
+    background-color: #ffa300;
+    display:block;
+    border-radius: 10px;
+    width:100%;
+    height:6px;
+}
+header .van.show{
+    left:0px;
+}
+
+/* Adding effect to burger to a Cross*/
+.line.alter-1 {
+    transform: rotate(45deg) translateY(16px);
+    transition: transform 0.3s ease;
+}
+
+.line.alter-2 {
+    opacity: 0; /* Hide the middle line */
+    transition: opacity 0.3s ease;
+}
+
+.line.alter-3 {
+    transform: rotate(-45deg) translateY(-16px);
+    transition: transform 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+    header .menu {
+        display: none; /* Hide the desktop menu */
+    }
+
+    header .burger {
+        display: flex; /* Ensure the burger menu is visible */
+    }
+
+    header .van {
+        display: block; /* Show the off-screen menu */
+    }
+}
+
+
+/* Slider CSS */
+.slider{
+    height: 100vh;
+    margin-top: 0px;
+    position: relative;
+}
+.slider .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+.slider .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to right, #000000ba 20%, transparent
+    );
+}
+.slider .list .item .content{
+    position: absolute;
+    left: 10%;
+    top: 17%;
+    width: 500px;
+    max-width: 80%;
+    z-index: 1;
+}
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+.slider .list .item .content h3{
+    font-size: 2.8em;
+    margin: 0;
+    color: #f5a623;
+}
+.slider .list .item.active{
+    opacity: 1;
+    z-index: 10;
+}
+@keyframes showContent {
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h3,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active h3{
+    animation-delay: 1s;
+}
+.slider .list .item.active p:nth-child(3){
+    animation-duration: 1.3s;
+}
+
+.arrows{
+    position: absolute;
+    top: 30%;
+    right: 50px;
+    z-index: 100;
+}
+.arrows button{
+    background-color: rgba(238, 238, 238, 0.625);
+    border: none;
+    font-family: monospace;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: #eee;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: black;
+}
+
+.thumbnail{
+    position: absolute;
+    bottom: -3%;
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 250px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: center;
+}
+.thumbnail::-webkit-scrollbar{
+    width: 0;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    filter: brightness(.5);
+    transition: .5s;
+    flex-shrink: 0;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.thumbnail .item.active{
+    filter: brightness(1);
+}
+.thumbnail .item .content{
+    position: absolute;
+    inset: auto 10px 10px 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .thumbnail{
+        display:none;
+    }
+    .slider .list .item .content h3{
+        font-size: 2em;
+    }
+    .slider .list .item .content p:nth-child(3){
+        font-size: 0.8em;
+    }
+    .arrows{
+        top: 10%;
+    }
+}
+</style>
+
+<body>
+    <!-- header Navigation Bar-->
+    <header>
+        <div class="logo">S I T A</div>
+
+        <div class="container">
+            <div class="burger" onclick="switch1();">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>            
+            <van class="van"> <!-- Off-Screen Menu-->
+                <ul>
+                    <li><a href="Main.html">Home</a></li>
+                    <li><a href="Main.html">Menu</a></li>
+                    <li><a href="Team.html">Team</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Offer.html">Offer</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </van>
+            <nav>
+                <ul class="menu">
+                    <li><a href="Main.html">Home</a></li>
+                    <li><a href="Menu.html">Menu</a></li>
+                    <li><a href="Team.html">Team</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Offer.html">Offer</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header> 
+
+    <!-- slider -->
+    <div class="slider">
+        <!-- list Items -->
+        <div class="list">
+            <div class="item active">
+                <img src="https://www.foodserviceequipmentjournal.com/2017/08/open-kitchen.jpeg">
+                <div class="content">
+                    <p>SITA</p>
+                    <h3>Our Team</h3>
+                    <p>
+                        At our restaurant, we believe that great food begins with a great team. Our talented chefs bring passion, creativity, and dedication to every dish they prepare, ensuring that each plate is a reflection of their love for the culinary arts. From crafting bold, innovative flavors to perfecting timeless classics, our kitchen is a place where tradition meets creativity, and quality is at the heart of everything we do.<br>
+                        We work together with a shared goal: to create a dining experience that feels warm, inviting, and truly special. Whether it’s a carefully prepared entrée, a delectable dessert, or the perfect char on the grill, every bite tells a story of care and craftsmanship. Welcome to our table—we’re thrilled to share our passion for food with you.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://www.lecoursgroup.com/wp-content/uploads/2023/12/executive-chef-careers.webp">
+                <div class="content">
+                    <p>Alessandro Raffaele</p>
+                    <h3>Culinary Maestro</h3>
+                    <p>
+                        With over 15 years of experience in the culinary world, Chef Alessandro Raffaele brings a passion for creating innovative, yet comforting dishes. Having trained in some of Italy’s finest kitchens, he combines traditional techniques with a modern flair to craft memorable dining experiences. Alessandro’s dedication to quality ingredients and attention to detail shines through in every plate, ensuring that each dish is a celebration of flavor and artistry. As the head of our kitchen, his leadership and creativity are the driving force behind our restaurant’s success.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://hoteliersweb.com/wp-content/uploads/2022/10/Chef-Bhushan-Sawant-scaled.jpg">
+                <div class="content">
+                    <p>Bhushan Sawant</p>
+                    <h3>Executive Chef</h3>
+                    <p>
+                        Chef Bhushan Sawant is a culinary visionary with a deep-rooted love for fusion cuisine. Drawing inspiration from his diverse training and travels, Bhushan has honed a unique style that blends classic techniques with bold, international flavors. With over a decade of experience in leading high-end kitchens, his expertise and commitment to excellence elevate every dining experience. As our Executive Chef, Bhushan oversees all aspects of our kitchen operations, ensuring that each dish is crafted with precision and passion, delivering an exceptional taste of innovation in every bite.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://onlychefs.co.uk/wp-content/uploads/2017/03/Aspiring-Head-Chef-Tips.png">
+                <div class="content">
+                    <p>Simon Braithwait</p>
+                    <h3>Sous Chef</h3>
+                    <p>
+                        With a keen eye for detail and a love for culinary craftsmanship, Chef Simon Braithwait brings a wealth of experience and creativity to our kitchen. After years of working alongside top chefs across Europe, Simon has developed a refined palate and an expertise in elevating classic dishes with contemporary twists. As Sous Chef, Simon plays a pivotal role in executing the menu and mentoring our kitchen team, ensuring every dish meets the highest standards of quality and presentation. His passion for fresh, seasonal ingredients and his dedication to excellence are key to our kitchen's success.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://jbf-media.s3.amazonaws.com/production/blog/2018/10/23/EstherChoi-317%20web.jpg">
+                <div class="content">
+                    <p>So-yeon</p>
+                    <h3>Senior Chef</h3>
+                    <p>
+                        Chef So-yeon brings a harmonious blend of tradition and innovation to our kitchen. With a background rooted in her Korean heritage, she expertly fuses authentic flavors with modern techniques, creating dishes that are both comforting and exciting. Having worked in renowned kitchens around the world, So-yeon has refined her skills and developed a unique culinary voice that shines through in every plate. As Senior Chef, she is instrumental in menu development, overseeing kitchen operations, and ensuring the highest standards of quality and creativity. Her passion for food and dedication to excellence make her an invaluable part of our team.
+                    </p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://t3.ftcdn.net/jpg/06/53/79/88/360_F_653798800_xuzX9Fnek006G2EacJhgmoZOJ0w9c4YD.jpg">
+                <div class="content">
+                    <p>Xavier Brooks</p>
+                    <h3>Grill Chef</h3>
+                    <p>
+                        Chef Xavier Brooks is a master of the grill, with a talent for bringing out the best in every cut of meat and vegetable. With years of experience in barbecue and open-fire cooking, he combines traditional grilling techniques with a deep understanding of flavor profiles to create dishes that are both smoky and savory. Xavier’s precision and passion for fire-cooked cuisine make him a standout in the kitchen. As Grill Chef, he ensures that every dish served from the grill is perfectly charred and bursting with flavor, providing our guests with a truly exceptional dining experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- button arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+
+        <!-- thumbnail -->
+        <div class="thumbnail">
+            <div class="item active">
+                <img src="https://www.foodserviceequipmentjournal.com/2017/08/open-kitchen.jpeg">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px; text-align: center;">
+                    <b>Team</b>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://www.lecoursgroup.com/wp-content/uploads/2023/12/executive-chef-careers.webp">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px; text-align: center;">
+                    <b>Alessandro Raffaele</b>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://hoteliersweb.com/wp-content/uploads/2022/10/Chef-Bhushan-Sawant-scaled.jpg">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px; text-align: center;">
+                    <b>Bhushan Sawant</b>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://onlychefs.co.uk/wp-content/uploads/2017/03/Aspiring-Head-Chef-Tips.png">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px; text-align: center;">
+                    <b>Simon Braithwait</b>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://jbf-media.s3.amazonaws.com/production/blog/2018/10/23/EstherChoi-317%20web.jpg">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px; text-align: center;">
+                    <b>So-yeon</b>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://t3.ftcdn.net/jpg/06/53/79/88/360_F_653798800_xuzX9Fnek006G2EacJhgmoZOJ0w9c4YD.jpg">
+                <div class="content" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); background-color: rgba(0, 0, 0, 0.5); padding: 5px; display: inline-block; border-radius: 10px;">
+                    <b>Xavier Brooks</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Select all slider items, next and previous buttons, and thumbnails
+    let items = document.querySelectorAll('.slider .list .item'); // List of slider items
+    let next = document.getElementById('next'); // Button to move to the next slide
+    let prev = document.getElementById('prev'); // Button to move to the previous slide
+    let thumbnails = document.querySelectorAll('.thumbnail .item'); // List of thumbnail items
+
+    // Configuration parameters
+    let countItem = items.length; // Total number of slider items
+    let itemActive = 0; // Index of the currently active slider item
+
+    // Event listener for the "Next" button click (move to the next slide)
+    next.onclick = function() {
+        itemActive = itemActive + 1; // Increment the active item index
+        if (itemActive >= countItem) { // Loop back to the first slide if the index exceeds the last slide
+            itemActive = 0;
+        }
+        showSlider(); // Update the slider display
+    }
+
+    // Event listener for the "Previous" button click (move to the previous slide)
+    prev.onclick = function() {
+        itemActive = itemActive - 1; // Decrement the active item index
+        if (itemActive < 0) { // Loop back to the last slide if the index becomes negative
+            itemActive = countItem - 1;
+        }
+        showSlider(); // Update the slider display
+    }
+
+    // Automatically run the slider every 9 seconds
+    let refreshInterval = setInterval(() => {
+        next.click(); // Simulate a click on the "Next" button
+    }, 9000); // 9-second interval
+
+    // Function to update the slider display
+    function showSlider() {
+        // Remove the "active" class from the previously active slider item and thumbnail
+        let itemActiveOld = document.querySelector('.slider .list .item.active');
+        let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+        itemActiveOld.classList.remove('active');
+        thumbnailActiveOld.classList.remove('active');
+
+        // Add the "active" class to the newly active slider item and thumbnail
+        items[itemActive].classList.add('active');
+        thumbnails[itemActive].classList.add('active');
+
+        // Ensure the active thumbnail is visible in the viewport
+        setPositionThumbnail();
+
+        // Reset the auto-slider interval to prevent interference from manual interactions
+        clearInterval(refreshInterval); // Clear the previous interval
+        refreshInterval = setInterval(() => {
+            next.click(); // Restart the auto-slider
+        }, 5000); // Set the interval to 5 seconds
+    }
+
+    // Function to ensure the active thumbnail is properly positioned within the viewport
+    function setPositionThumbnail() {
+        let thumbnailActive = document.querySelector('.thumbnail .item.active'); // Get the active thumbnail
+        let rect = thumbnailActive.getBoundingClientRect(); // Get its position relative to the viewport
+
+        // If the thumbnail is outside the viewport, scroll it into view
+        if (rect.left < 0 || rect.right > window.innerWidth) {
+            thumbnailActive.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+        }
+    }
+
+    // Add click event listeners to each thumbnail
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            itemActive = index; // Set the clicked thumbnail's index as the active index
+            showSlider(); // Update the slider display
+        });
+    })
+
+    // Navigation Bar Toggle functionality
+    let flag = false; // Flag to track whether the navigation is shown or hidden
+    let nav = document.querySelector('.van'); // Select the navigation element
+    let line = document.querySelectorAll('.line'); // Select the elements representing lines (menu icon)
+
+    // Function to switch the state of the navigation menu and lines
+    function switch1() {
+        if (flag == false) {
+            // If the menu is not visible, show it after 100ms
+            setTimeout(() => {
+                nav.classList.add('show');
+            }, 100);
+
+            // Add animation classes to transform the lines into a hamburger icon
+            line[0].classList.add('alter-1');
+            line[1].classList.add('alter-2');
+            line[2].classList.add('alter-3');
+
+            flag = true; // Set the flag to true indicating the menu is shown
+        } else if (flag == true) {
+            // If the menu is visible, hide it after 100ms
+            setTimeout(() => {
+                nav.classList.remove('show');
+            }, 100);
+
+            // Remove the animation classes from the lines to reset the hamburger icon
+            line[0].classList.remove('alter-1');
+            line[1].classList.remove('alter-2');
+            line[2].classList.remove('alter-3');
+
+            flag = false; // Set the flag to false indicating the menu is hidden
+        }
+    }
+</script>
+</body>
+</html>

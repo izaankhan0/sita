@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Dancing Curve';
+    background-color: #000;
+}
+
+/* Header Styling */
+header {
+    font-family: Poppins;
+    width: 100%;
+    margin: auto;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0000009e;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #eee;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+header .logo:hover {
+    color: #f5a623; /* Highlight color */
+}
+
+header .menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+header .menu li a {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: background 0.3s, color 0.3s;    /*Transition when hovering*/
+    border-radius: 5px;
+}
+header .menu li a:hover {
+    background-color: #f5a623;
+    color: #333;
+}
+
+header .van {
+    display: none;
+    position: fixed;
+    height:100vh;
+    width:50vw;
+    background-color: #ffa300;
+    left:-1000px;
+    z-index:20;
+    transition: 0.5s ease;
+    margin-top: 32px;
+}
+header .van ul{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top: 40px;
+    list-style: none;
+}
+header .van ul li{
+    margin: 15px 0px;
+}
+header .van ul li a{
+    color: black;
+    margin-top: 40px;
+    text-decoration: none;
+    list-style: none;
+    font-size: 1em;
+    font-weight: 600;
+    transition:100ms ease;
+}
+
+header .burger {
+    display: none; /* Ensure it's visible */
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    top:13px;
+
+}
+header .burger .line {
+    background-color: #ffa300;
+    display: block;
+    border-radius: 10px;
+    width: 100%;
+    height: 6px;
+}
+.line{
+    background-color: #ffa300;
+    display:block;
+    border-radius: 10px;
+    width:100%;
+    height:6px;
+}
+header .van.show{
+    left:0px;
+}
+/* Adding effect to burger to a Cross*/
+.line.alter-1 {
+    transform: rotate(45deg) translateY(16px);
+    transition: transform 0.3s ease;
+}
+
+.line.alter-2 {
+    opacity: 0; /* Hide the middle line */
+    transition: opacity 0.3s ease;
+}
+
+.line.alter-3 {
+    transform: rotate(-45deg) translateY(-16px);
+    transition: transform 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+    header .menu {
+        display: none; /* Hide the desktop menu */
+    }
+
+    header .burger {
+        display: flex; /* Ensure the burger menu is visible */
+    }
+
+    header .van {
+        display: block; /* Show the off-screen menu */
+    }
+}
+
+/*This is the main styling*/
+.banner {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url("https://images.pexels.com/photos/887723/pexels-photo-887723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") center/cover no-repeat;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding-bottom: 20px;
+    overflow: none;
+}
+.card-container{
+    display: grid;
+    grid-template-columns: 0px 420px;   /*Two cards where one card is reservation and one has been vanished*/
+    min-height: 780px;
+}
+.card-img{
+    background:white;
+}
+.banner h1{
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-size:2.7em;
+    font-family: 'Dancing Script', cursive;
+    color: #f5a623;
+    text-align: center;
+
+}
+.banner p{
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size:1em;
+    font-family: 'Dancing Curve';
+    color: #f5a623;
+    text-align: center;
+    font-family: Poppins;
+}
+.card-content{
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    height:820px;
+    padding: 10px;
+
+}
+.card-content h2{
+    text-align:center;
+    color: #000000;
+    font-size: 2.4em;
+    font-family: 'Dancing Script', cursive;
+    padding:15px 0px 10px 0px;
+
+}
+.card-content label{
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    color: #000;
+    font-weight: 500;
+    font-family: Poppins;
+}
+.card-content input[type="text"],
+.card-content input[type="email"],
+.card-content input[type="tel"],
+.card-content select,
+.card-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size:0.8em;
+    resize:none;
+}
+
+.card-content .date-time-container,
+.card-content .email-phone-container{
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+.card-content .date-time-container input[type="date"],
+.card-content .date-time-container select,
+.card-content .email-phone-container input[type="email"],
+.card-content .email-phone-container input[type="tel"]{
+    width:50%;
+    height:40px;
+    border-radius: 10px;
+}
+
+.card-content .Payment-Card{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.card-content .Payment-Card label{
+    cursor: pointer;
+    padding: 0px;
+    border-radius: 5px;
+    font-size: 2em;
+    background-color: white;
+}
+
+.card-content .button{
+    width:100%;
+    padding: 10px;
+    color: #000;
+    font-size: 1em;
+    background-color: #ffa300;
+    text-decoration: none;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: background-color 0.3s;
+}
+.card-container .button:hover{
+    background-color: #fff099;
+    color:#333333;
+}
+@media (max-width: 480px){
+    .card-container{
+    width: 380px !important;
+}
+.card-content{
+    width: 380px ;
+}
+}
+@media (max-width: 390px){
+    .card-container{
+    width: 340px !important;
+}
+.card-content{
+    width: 340px ;
+}
+}
+@media (max-width: 350px){
+    .card-container{
+    width: 320px !important;
+}
+.card-content{
+    width: 320px ;
+}
+}
+</style>
+
+<body>
+    <!-- header Navigation Bar-->
+    <header>
+        <div class="logo">S I T A</div>
+
+        <div class="container">
+            <div class="burger" onclick="switch1();">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>            
+            <van class="van"> <!-- Off-Screen Menu-->
+                <ul>
+                    <li><a href="Main.html">Home</a></li>
+                    <li><a href="Main.html">Menu</a></li>
+                    <li><a href="Team.html">Team</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Offer.html">Offer</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </van>
+            <nav>
+                <ul class="menu">
+                    <li><a href="Main.html">Home</a></li>
+                    <li><a href="Main.html">Menu</a></li>
+                    <li><a href="Team.html">Team</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Offer.html">Offer</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="Reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header> 
+    <section class="banner">
+        <h1>Welcome to our Restaraunt</h1>
+        <p>Let us save a cozy spot just for you -<br> reserve today and indulge in warm, handcrafted flavors.</p>
+        <div class="card-container">
+            <div class="card-img">
+                <!-- image here(this is simply done to keep the form in center ignore it)-->
+            </div>
+
+            <div class="card-content">
+                <h2>Reservation</h2>
+                <form>
+                    <label for = "Full-Name">Full Name</label>
+                    <div class="date-time-container">
+                        <input type = "text" id="First-Name" placeholder = "First Name" required>
+                        <input type = "text" id="Last-Name" placeholder = "Last Name" required>
+                    </div>
+        
+                    <label for = "Contact">Contact Information</label>
+                    <div class="email-phone-container">
+                        <input type = "email" id="E-mail" placeholder = "E-Mail: name@example.com" required>
+                        <input type = "tel" id="Phone" placeholder = "Phone: 300-123-4567" maxlength="12" oninput="formatPhoneNumber(this)" required>
+                    </div>
+        
+                    <label for = "Guests">No.of People</label>
+                    <div class="Quantity">
+                        <input type = "text" id="People" placeholder = "Number of People" required>
+                    </div>
+                        
+                    <label for="Reservation-Date-Time">Reservation</label>
+                    <div class="date-time-container">
+                        <input type="date" id="Reservation-Date" required style="margin-top:5px;">
+                        <select id="Reservation-Time" required>
+                            <option value = "">Select Time</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                            <option value="7:00 PM">7:00 PM</option>
+                            <option value="9:00 PM">9:00 PM</option>
+                        </select>
+                    </div>
+        
+                    <label for ="Reservation-type">Reservation Type</label>
+                    <div class="Reservation-Selection">
+                        <select id="Reservation-type" required>
+                            <option value = "">Select</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="VIP/Mezzanin">VIP/Mezanine</option>
+                            <option value="Wedding/Anniversary">Wedding/Anniversary</option>
+                            <option value="Private">Private</option>
+                            <option value="Corporate">Corporate</option>
+                        </select>
+                    </div>
+        
+                    <label for="fname">Payment</label>
+                    <div class="Payment-Card">
+                        <input type="radio" name="Credit" id="Visa" value="Visa">
+                        <label for="Visa" title="Visa"><i class="fa fa-cc-visa" style="color:navy;"></i></label>
+                        
+                        <input type="radio" name="Credit" id="AmericanExpress" value="AmericanExpress">
+                        <label for="AmericanExpress" title="American Express"><i class="fa fa-cc-amex" style="color:blue;"></i></label>
+                        
+                        <input type="radio" name="Credit" id="Master" value="MasterCard">
+                        <label for="Master" title="Master Card"><i class="fa fa-cc-mastercard" style="color:rgb(255, 0, 0);"></i></label>
+                        
+                        <input type="radio" name="Credit" id="Discover" value="Discover">
+                        <label for="Discover" title="Discover"><i class="fa fa-cc-discover" style="color:orange;"></i></label>
+                    </div>
+        
+                    <label for = "CreditNum">Credit Card Number</label>
+                    <div class="Credit">
+                        <input type = "tel" id="CreditNum" name="CardNumber" placeholder = "1111 2222 3333 4444" maxlength="19" oninput="formatCreditCard(this)" required>
+                    </div>
+    
+                    <label for="Special-Requests">Special Request</label>
+                    <div class="request">
+                        <textarea id="Special-Requets" rows="3" placeholder="Enter any special requests" style="font-size: 14px;"></textarea>
+                    </div>
+    
+                    <button type="submit" class="button"><b>Submit</b></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<script>
+    // Function to format phone numbers
+    function formatPhoneNumber(input) {
+        let cleaned = input.value.replace(/\D/g, '');   // Remove all non-digit characters using a regular expression
+        let formatted = ''; // Initialize an empty string to hold the formatted phone number
+
+        // Conditional blocks to format the phone number depending on the number of digits
+        if (cleaned.length <= 3) {
+            formatted = cleaned; // If the number has 3 or fewer digits, just return it as is
+        } else if (cleaned.length <= 6) {
+            formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;   // Format as XXX-XXX if the number has between 4 and 6 digits
+        } else {
+            formatted = `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;    // Format as XXX-XXX-XXXX if the number has more than 6 digits
+        }
+        input.value = formatted; // Update the input field with the formatted value
+    }
+
+    // Function to format credit card numbers
+    function formatCreditCard(input){
+        // Remove all non-digit characters from the input value
+        let cleaned = input.value.replace(/\D/g, ''); 
+
+        // Initialize an empty string to hold the formatted credit card number
+        let formatted = '';
+
+        // Conditional blocks to format the credit card number depending on the number of digits
+        if (cleaned.length <= 4) {
+            formatted = cleaned; // If there are 4 or fewer digits, return as is
+        } else if (cleaned.length <= 8) {
+            // Format as XXXX XXXX for 5 to 8 digits
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4)}`;
+        } else if (cleaned.length <= 12) {
+            // Format as XXXX XXXX XXXX for 9 to 12 digits
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4, 8)} ${cleaned.slice(8)}`;
+        } else {
+            // Format as XXXX XXXX XXXX XXXX for 13 to 16 digits
+            formatted = `${cleaned.slice(0, 4)} ${cleaned.slice(4, 8)} ${cleaned.slice(8, 12)} ${cleaned.slice(12, 16)}`;
+        }
+        // Update the input field with the formatted value
+        input.value = formatted; 
+    }
+
+    // Navigation Bar Toggle functionality
+    let flag = false; // Flag to track whether the navigation is shown or hidden
+    let nav = document.querySelector('.van'); // Select the navigation element
+    let line = document.querySelectorAll('.line'); // Select the elements representing lines (menu icon)
+
+    // Function to switch the state of the navigation menu and lines
+    function switch1() {
+        if (flag == false) {
+            // If the menu is not visible, show it after 100ms
+            setTimeout(() => {
+                nav.classList.add('show');
+            }, 100);
+
+            // Add animation classes to transform the lines into a hamburger icon
+            line[0].classList.add('alter-1');
+            line[1].classList.add('alter-2');
+            line[2].classList.add('alter-3');
+
+            flag = true; // Set the flag to true indicating the menu is shown
+        } else if (flag == true) {
+            // If the menu is visible, hide it after 100ms
+            setTimeout(() => {
+                nav.classList.remove('show');
+            }, 100);
+
+            // Remove the animation classes from the lines to reset the hamburger icon
+            line[0].classList.remove('alter-1');
+            line[1].classList.remove('alter-2');
+            line[2].classList.remove('alter-3');
+
+            flag = false; // Set the flag to false indicating the menu is hidden
+        }
+    }
+</script>    
+</body>
+</html>

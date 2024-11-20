@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1>Cooking in progress</h1>
+        <div id="cooking">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div id=area>
+                <div id="sides">
+                    <div id="pan"></div>
+                    <div id="handle"></div>
+                </div>
+                <div id="pancake">
+                    <div id="pastry"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+        <section class="hero">
+            <burger onclick="switch1();">
+                <line class="line-1 line"></line>
+                <line class="line-2 line"></line>
+                <line class="line-3 line"></line>
+            </burger>
+            <van class="van">
+                <ul>
+                    <a href=""><li>HOME</li></a>
+                    <a href=""><li>TEAM</li></a>
+                    <a href=""><li>RESERVATION</li></a>
+                    <a href=""><li>OFFERS</li></a>
+                    <a href=""><li>GALLERY</li></a>
+                </ul>
+            </van>
+            <nav>
+                <ul>
+                    <a href=""><li>HOME</li></a>
+                    <a href=""><li>TEAM</li></a>
+                    <a href=""><li>RESERVATION</li></a>
+                    <a href=""><li>OFFERS</li></a>
+                    <a href=""><li>GALLERY</li></a>
+                </ul>
+            </nav>
+            <div class="main-panel">
+                <div class="left-main side-main"><img class="main-dishes" src="./Media/1.png" alt=""><img src="./Media/arrow-left.png" onclick="arrow1();switchDishes();" alt=""></div>
+                <div class="mid-main">
+                    <h1>BULKING</h1>
+                    <h2>THE BEST</h2>
+                    <h3>FOOD</h3>
+                    <p>At Bulking, we serve serious fuel for serious gains. Born from the passion for fitness and flavor, our bulking restaurant offers hearty, high-protein meals that pack the punch every athlete craves. From juicy steaks and grilled chicken breasts to protein-packed shakes and energy-loaded sides, each dish is crafted to help you hit your macros while delighting your taste buds.</p>
+                        <button>ORDER NOW</button>
+                </div>
+                <div class="right-main side-main"><img class="main-dishes" src="./Media/2.png" alt=""><img src="./Media/arrow-right.png" onclick="arrow2();switchDishes();" alt=""></div>
+            </div>    
+        </section>
+
+        <section class="menu">
+            <div class="left-menu">
+                <img class="wheel" src="./Media/menu-rotator-3.png" alt="">
+            </div>
+            <div class="right-menu">
+                <h4>OUR <span class="cuisine">CUISINE</span></h4>
+                <h5 class="h5">CURRY WITH RICE</h5>
+                <p class="h5-p">A classic, hearty curry served with fluffy rice, balancing bold spices with creamy richness. Perfectly blended to give every bite a flavorful kick, it's an ideal choice for curry lovers seeking comfort and warmth.
+                    </p>
+                <div class="controller">
+                    <img src="./Media/arrow-left-orange.png" onclick="wheelLeft(); wheel();" alt="">
+                    <h6 class="text-change-1">1 / 4</h6>
+                    <img src="./Media/arrow-right-orange.png" onclick="wheelRight(); wheel();" alt="">
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

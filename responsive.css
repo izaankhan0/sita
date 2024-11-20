@@ -1,0 +1,147 @@
+
+@media (max-width:1370px){
+    
+    .mid-main{
+        width: 50%;
+    }
+    img[src="./Media/2.png"]{
+        width: 450px;
+
+    }
+    img[src="./Media/1.png"]{
+        width: 450px;
+
+    }
+    img[src="./Media/3.png"]{
+        width: 450px;
+
+    }
+    img[src="./Media/4.png"]{
+        width: 450px;
+
+    }
+    h1,h2,h3,.mid-main>p{
+        z-index: 5;
+    }
+    .left-menu{
+        position: relative;
+        left: 200px;
+    }
+
+}
+
+@media (max-width:1100px){
+    .left-menu{
+        left: 300px;
+        top: 90px;
+    } 
+}
+
+@media (max-width:1000px){
+    .side-main{
+        display: none;
+    }
+    .mid-main{
+        width: 100%;
+        margin-top: 50px;
+    }
+    .left-menu{
+        left: 400px;
+    }
+    h4{
+        font-size: 55pt;
+    }
+
+    burger{
+        display: flex;
+    }
+
+    nav{
+        display: none;
+    }
+    
+    van{
+        display: block;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+@media (max-width:800px){
+    .left-menu{
+        left: 550px;
+    }
+    h4{
+        font-size: 45pt;
+    }
+    h5{
+        font-size: 25pt;
+    }
+}
+
+@media (max-width:700px){
+    .menu{
+        flex-direction: column;
+    }
+    .right-menu{
+        width: 100%;
+    }
+    .wheel{
+        display: none;
+    }
+    .left-menu{
+        left: 1090px;
+        top: -400px;
+    }
+    .hero{
+        background-image: url(./Media/bg-5.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .main-panel{
+        margin-bottom: 200px;
+    }
+    van > ul > a > li{
+        font-size: 22pt;
+    }
+}
+
+
+@media (max-width:500px){
+    h1{
+            font-size: 31.8pt;
+            position: relative;
+            bottom: 10px;
+    }
+    h2{
+    font-size: 50pt;
+    }
+    h3{
+        font-size: 71pt;
+        bottom: 96px;
+    }
+    h4{
+        font-size: 36pt;
+    }
+    .h5-p{
+        padding-left: 0px ;
+        padding-right: 0px ;
+    }
+}
+@media (max-width:400px){
+    .right-menu > p{
+        padding-left: 0px ;
+        padding-right: 0px ;
+        margin-left: 10px ;
+        margin-right: 10px ;
+    }
+}

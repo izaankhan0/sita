@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.page-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure buttons are on the sides */
+}
+
+.prev-Button, .next-Button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  top: 50%; /* Center vertically */
+  transform: translateY(-20%); /* Adjust vertical centering */
+  z-index: 10;
+}
+
+/* To align the buttons on the sides of card */
+.prev-Button {
+  right:67.5pc;
+}
+.next-Button {
+  left: 67.5pc;
+}
+
+.card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  max-width: 800px;
+  height: 100%;
+  margin: 15px 15px 15px 15px;
+  box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  background-color: #ccc;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-text {
+  padding: 0px 4px 4px 9px;
+  flex: 1;
+  font-size: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-text p {
+  font-size: 13.7px;
+  font-family: "Poppins", sans-serif;
+}
+
+.card-text h2 {
+  font-size: 20px;
+}
+
+.card-text h3 {
+  font-size: 14.2px;
+}
+
+.card-image {
+  width: 52%;
+  object-fit: cover;
+  padding: 0%;
+}
+
+body {
+  margin:0 0 0 0;
+  background-color: rgb(248, 248, 217);
+  background-image: url(https://izaankhan0.github.io/bulking/Media/bg-5.png);
+}
+
+.container  {
+  display: inline-block;  
+}
+
+.container-image {
+  width: 100%; 
+  height: auto;
+  display: block;
+  object-fit: cover; /* Ensures the image scales and crops */
+  object-position: center; /* Centers the image */
+}
+
+.hero-section{
+  align-content: center;
+}
+.overlay-text  {
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffa300;
+  font-size: 3.5pc; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+  padding: 10px;
+  border-radius: 5px;
+  word-spacing: 6px; 
+  font-weight: bold;
+  letter-spacing: 1px; /* Increase space between letters */
+  line-height: 1.2; /* Adjust line height for readability */
+  margin: 20px 0; /* Add vertical space */
+}
+
+.blog-item{
+  padding-left: 10px;
+}
+
+/* Entrance Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  .card, .button-container {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  button {
+    transition: transform 0.2s ease, background-color 0.3s ease; 
+    /*The transform animation will be faster, while the background-color change will take a bit longer */
+  }
+  
+  /* Overlay Text Entrance Animation */
+  .overlay-text {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+@media (min-width:1000px ) {
+  .blog-item{
+    padding: 120px; 
+  }
+}
+@media (max-width: 768px) {
+    .card {
+      flex-direction: column; /* Stack the image and text vertically */
+      align-items: flex-start;
+      flex: 1 1 calc(100% - 30px);
+    margin-bottom: 20px;
+    }
+    .card-image {
+      padding-right: 0;
+      width: 100%;
+    }
+    .card-text {
+      text-align: left;
+    }
+    .container-image {
+      width: 100%; 
+    }   
+    .overlay-text {
+      font-size: 2pc; 
+      height: 60%;
+    }
+    .prev-Button, .next-Button{
+      position: initial;
+      width: 3pc;
+      padding: 2px;
+      margin: 0;
+    }
+    .blog-item{
+      padding: unset;
+    }
+}
+    
+@media (max-width: 320px) {
+  .card {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: flex-start;
+    margin-top: 25px;
+  }
+  .container-image{
+    height:100vw;
+    margin-bottom: 20px;
+  }
+  .overlay-text {
+    font-size: 1pc; 
+  }
+  .prev-Button, .next-Button{
+    width: 2pc;
+    padding: 2px;
+  }
+  header .van ul{
+    align-items: flex-start;
+  }
+}
+@media (max-width: 500px) {
+ 
+  .container-image{
+    height:90vw;
+  }
+}
+@media (max-width: 425px) {
+  .card {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+  .card-text{
+    font-size: 14px;
+    padding: 10px;
+  }
+  .prev-Button, .next-Button{
+    width: 2pc;
+    padding: 2px;
+  }
+  .container-image{
+    height:100vw;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+  .blog-item {
+    padding: 10px; 
+  }
+  .overlay-text {
+    font-size: 2.5pc;
+    text-align: center;
+    margin-top: 70px;
+  }
+  header .van ul{
+    align-items: flex-start;
+  }
+}
+
+.blog-carousel {
+    margin: 15px auto;
+    gap: 15px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.blog-slider {
+  display: flex;
+  margin: 15px auto;
+  transition: transform 0.5s ease;
+}
+
+.blog-item {
+  min-width: 100%; /* Ensure each blog takes the full width of the container */
+  box-sizing: border-box;
+}
+
+*{
+  box-sizing: border-box;
+}
+  /* Header Styling */
+header {
+  font-family: Poppins;
+  width: 100%;
+  margin: auto;
+  margin-top: 0;
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000; /* If you want to change the nav bar background color or op[acity do it here*/
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #eee;
+  cursor: pointer;
+  position: sticky;
+  transition: color 0.3s ease;
+}
+
+header .logo:hover {
+  color: #f5a623; /* Highlight color */
+}
+
+header .menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+header .menu li a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+
+header .menu li a:hover {
+  background-color: #f5a623;
+  color: #333;
+}
+
+header .van {
+  display: none;
+  position: fixed;
+  height:100vh;
+  width:50vw;
+  background-color: #ffa300;
+  left:-1000px;
+  z-index:20;
+  transition: 0.5s ease;
+  margin-top: 57px;
+  top: 0; /* Added to make it start at the top */
+}
+
+header .van ul{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  margin-top: 40px;
+  list-style: none;
+}
+header .van ul li{
+  margin: 15px 0px;
+}
+header .van ul li a{
+  color: black;
+  margin-top: 40px;
+  text-decoration: none;
+  list-style: none;
+  font-size: 1em;
+  font-weight: 600;
+  transition:100ms ease;
+}
+
+header .burger {
+  display: none; /* Ensure it's visible */
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 40px;
+  width: 50px;
+  position: fixed;
+  right: 20px;
+  top:13px;
+}
+
+header .burger .line {
+  background-color: #ffa300;
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  height: 6px;
+}
+.line{
+  background-color: #ffa300;
+  display:block;
+  border-radius: 10px;
+  width:100%;
+  height:6px;
+}
+header .van.show{
+  left:0px;
+}
+
+/* ADDING BURGER ANIMATION XD */
+
+.line.alter-1 {
+  transform: rotate(45deg) translateY(16px);
+  transition: transform 0.3s ease;
+}
+
+.line.alter-2 {
+  opacity: 0; /* Hide the middle line */
+  transition: opacity 0.3s ease;
+}
+
+.line.alter-3 {
+  transform: rotate(-45deg) translateY(-16px);
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  header .menu {
+      display: none; /* Hide the desktop menu */
+  }
+
+  header .burger {
+      display: flex; /* Ensure the burger menu is visible */
+  }
+
+  header .van {
+      display: block; /* Show the off-screen menu */
+  }
+
+  /* header {
+    display: n;
+  } */
+}
+  
