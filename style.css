@@ -527,3 +527,7 @@ burger{
 .alter-3{
     transform: rotate(-45deg) translateY(-16px);
 }
+
+.mid-main > h1{
+    font-weight: 600;
+}
