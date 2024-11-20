@@ -1,0 +1,101 @@
+.footer {
+    background: linear-gradient(    /* Change the background picture here if you want that black amrble look you have on your main page*/
+            to right, rgba(0, 0, 0, 0.73) 80%, transparent
+        ),
+        url(https://cdn.pixabay.com/photo/2022/05/22/13/21/healthy-7213383_1280.jpg) no-repeat center/cover;
+    color: #fff;
+    padding: 40px 20px;
+    background-size: cover; /* Ensures the background image scales properly */
+    background-position: center; /* Centers the background image */
+    margin-top: 300px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Section styles */
+.footer-section {
+    flex: 1;
+    margin: 20px;
+    text-align: center;
+}
+
+.footer-section h3 {
+    font-size: 1.8em;
+    font-family: Poppins;
+    visibility: hidden;
+    color: #ffa300;
+}
+
+.footer-section p,
+.footer-section ul {
+    line-height: 1.6;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    gap: 15px;              /* Space between icons */
+    margin: 20px 0;
+}
+
+.social-icons a {
+    color: #ffa300;
+    font-size: 2em; /* Slightly larger icons */
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2); /* Add a hover effect */
+}
+
+/* Follow Section */
+.footer-section.follow {
+    text-align: center; /* Center-align the content */
+}
+
+/* Opening Hours */
+.hours ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hours ul li {
+    margin-bottom: 5px;
+}
+
+/* Contact Form */
+.contact form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact input,
+.contact textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.contact button {
+    background-color: #ffa300;
+    color: #222;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: #FFC107;
+}
